@@ -1,11 +1,25 @@
+/**
+ * @typedef {Object} TeamInfo
+ * @property {string} teamMedia
+ * @property {{short: string, long: string}} teamNames
+ */
+
+/**
+ * @typedef {Object} TeamStat
+ * @property {number} Rank
+ * @property {number} Points
+ * @property {number} GP
+ * @property {{id: string}} info
+ */
+
 export const prerender = true;
 
 export async function load() {
-    const response = await fetch('https://www.shl.se/api/statistics-v2/stats-info/standings_standings?count=25&state=active&ssgtUuid=iuzqg7dqk9&moduleType=standings&provider=statnet');
+    const response = await fetch('https://www.shl.se/api/statistics-v2/stats-info/standings_standings?state=active&ssgtUuid=qa98unlbd6&moduleType=standings&count=25&provider=statnet');
     const json = await response.json();
 
     /**
-     * @type {Array<Object>}
+     * @type {Object<string, TeamInfo>}
      */
     let teams = {};
     for (const [key, team] of Object.entries(json[0].teams)) {
@@ -13,7 +27,7 @@ export async function load() {
     }
 
     /**
-     * @type {Array<Object>}
+     * @type {Array<TeamStat>}
      */
     const table = json[0].stats;
 
@@ -41,55 +55,65 @@ export async function load() {
 const getBets = function() {
     return {
         Mats: [
-            'FHC', 'BIF', 'FBK', 'SAIK', 'OHK', 'LHF', 'RBK',
-            'VLH', 'DIF', 'TIK', 'MIF', 'LHC', 'LIF', 'HV71'
+            'SAIK', 'RBK', 'FBK', 'BIF', 'FHC', 'VLH', 'IFB',
+            'LHF', 'OHK', 'MIF', 'DIF', 'LHC', 'TIK', 'HV71'
         ],
 
         Stefan: [
-            'FHC', 'BIF', 'FBK', 'LHF', 'SAIK', 'VLH', 'RBK',
-            'LHC', 'OHK', 'TIK', 'DIF', 'MIF', 'HV71', 'LIF'
+            'SAIK', 'RBK', 'BIF', 'FBK', 'FHC', 'LHF', 'VLH',
+            'OHK', 'MIF', 'IFB', 'DIF', 'LHC', 'HV71', 'TIK'
         ],
 
         Mattias: [
-            'FHC', 'BIF', 'FBK', 'LHF', 'SAIK', 'VLH', 'RBK',
-            'OHK', 'DIF', 'TIK', 'MIF', 'LHC', 'LIF', 'HV71'
+            'SAIK', 'RBK', 'FHC', 'LHF', 'FBK', 'VLH', 'OHK',
+            'BIF', 'LHC', 'MIF', 'DIF', 'HV71', 'IFB', 'TIK'
         ],
 
         'Mikael N': [
-            'BIF', 'FHC', 'FBK', 'LHF', 'SAIK', 'VLH', 'OHK',
-            'RBK', 'DIF', 'LHC', 'TIK', 'MIF', 'HV71', 'LIF'
+            'SAIK', 'FHC', 'RBK', 'FBK', 'BIF', 'VLH', 'LHF',
+            'DIF', 'IFB', 'OHK', 'MIF', 'HV71', 'LHC', 'TIK'
         ],
 
         Mia: [
-            'BIF', 'FBK', 'FHC', 'SAIK', 'LHF', 'VLH', 'RBK',
-            'OHK', 'MIF', 'DIF', 'LHC', 'TIK', 'LIF', 'HV71'
+            'SAIK', 'FHC', 'RBK', 'BIF', 'FBK', 'LHF', 'VLH',
+            'DIF', 'OHK', 'HV71', 'MIF', 'LHC', 'IFB', 'TIK'
         ],
 
         Niclas: [
-            'SAIK', 'FHC', 'BIF', 'FBK', 'LHF', 'VLH', 'MIF',
-            'RBK', 'OHK', 'TIK', 'DIF', 'HV71', 'LHC', 'LIF'
+            'FBK', 'SAIK', 'FHC', 'RBK', 'LHF', 'VLH', 'DIF',
+            'BIF', 'MIF', 'LHC', 'HV71', 'OHK', 'TIK', 'IFB'
         ],
 
         Rolf: [
-            'LHF', 'BIF', 'FBK', 'FHC', 'SAIK', 'RBK', 'VLH',
-            'LIF', 'OHK', 'DIF', 'HV71', 'LHC', 'TIK', 'MIF'
+            'SAIK', 'FHC', 'BIF', 'LHF', 'FBK', 'RBK', 'VLH',
+            'DIF', 'OHK', 'MIF', 'LHC', 'HV71', 'IFB', 'TIK'
         ],
 
         Peter: [
-            'FHC', 'FBK', 'BIF', 'HV71', 'DIF', 'LHF', 'SAIK',
-            'RBK', 'VLH', 'LHC', 'OHK', 'MIF', 'TIK', 'LIF'
+            'SAIK', 'RBK', 'FHC', 'BIF', 'LHF', 'FBK', 'VLH',
+            'OHK', 'LHC', 'DIF', 'MIF', 'HV71', 'IFB', 'TIK'
         ],
 
-        Per: [
-            'FBK', 'BIF', 'FHC', 'LHF', 'SAIK', 'VLH', 'DIF',
-            'RBK', 'OHK', 'LHC', 'MIF', 'LIF', 'TIK', 'HV71'
+        Andreas: [
+            'RBK', 'SAIK', 'BIF', 'FBK', 'FHC', 'IFB', 'LHF',
+            'VLH', 'OHK', 'LHC', 'DIF', 'MIF', 'TIK', 'HV71'
+        ],
+
+        Tina: [
+            'FHC', 'RBK', 'SAIK', 'FBK', 'VLH', 'LHF', 'BIF',
+            'DIF', 'MIF', 'LHC', 'HV71', 'OHK', 'TIK', 'IFB'
+        ],
+
+        Aitman: [
+            'SAIK', 'RBK', 'MIF', 'LHF', 'LHC', 'HV71', 'FHC',
+            'FBK', 'DIF', 'BIF', 'IFB', 'TIK', 'VLH', 'OHK'
         ]
     };
 }
 
 /**
- * @param {Object<string, string[]>} bets 
- * @param {Array<Object>} table 
+ * @param {Object<string, string[]>} bets
+ * @param {Array<TeamStat>} table
  */
 const getStandings = function (bets, table) {
     let standings = [];
