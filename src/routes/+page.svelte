@@ -19,7 +19,7 @@
 <div class="min-h-screen bg-slate-100 pb-16">
     <header class="bg-gradient-to-b from-blue-950 to-blue-900 px-4 pb-14 pt-10 text-center text-white shadow-lg">
         <p class="mb-1 text-xs uppercase tracking-[0.3em] text-blue-300 sm:text-sm">Ord&amp;Bild</p>
-        <h1 class="font-display text-4xl font-semibold tracking-tight sm:text-5xl">SHL-tipset 25/26</h1>
+        <h1 class="font-display text-4xl font-semibold tracking-tight sm:text-5xl">SHL-tipset 26/27</h1>
         <p class="mt-2 text-sm text-blue-200 sm:text-base">Vem gissade bäst på sluttabellen?</p>
     </header>
 
